@@ -20,5 +20,5 @@ def test_60():
     assert check_temperature(60) == "ALERT"
 
 def test_coversion_to_fahrenheit():
-    assert convert_to_fahrenheit(0) == 100
+    assert convert_to_fahrenheit(0) == 32
   
