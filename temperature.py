@@ -1,4 +1,3 @@
-
 def check_temperature(tmp):
 
 
@@ -8,9 +7,6 @@ def check_temperature(tmp):
     if tmp < 0:
         return "INVALID"
 
-
-
-
     if tmp < 30:
         return "NORMAL"
 
@@ -19,3 +15,6 @@ def check_temperature(tmp):
 
     else:
         return "ALERT"
+
+def convert_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
