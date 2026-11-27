@@ -1,11 +1,11 @@
 
-name: Temperature Monitoring CI
+name: Temperature Monitoring CI/CD
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   test:
@@ -27,3 +27,24 @@ jobs:
 
       - name: Run tests
         run: pytest -v
+
+  package:
+    needs: test
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create ZIP package
+        run: |
+          mkdir -p dist
+          zip -j dist/temperature-monitoring.zip temperature.py
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: temperature-monitoring
+          path: dist/temperature-monitoring.zip
+
